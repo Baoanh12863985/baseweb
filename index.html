@@ -242,9 +242,16 @@
 					}
 				})
 				editor.addAction({
-					id: 'run',
-					label: 'Run code',
-					run: function() {
+					id: "run-code",
+					label: "Run Code",
+					precondition: null,
+					keybindingContext: null,
+					contextMenuGroupId: "navigation",
+					contextMenuOrder: 1.5,
+					keybindings: [
+						monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
+					],
+					run: function(){
 						var text = editor.getValue();
 						fetch(api_url, {
 							method: 'POST',
@@ -258,7 +265,7 @@
 						  .then(response => response.json())
 						  .then(data => console.log(data))
 						  .catch(error => console.error(error));
-					}
+					},
 				});
 				try {
 				if (CefSharp) {
